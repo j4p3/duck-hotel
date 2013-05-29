@@ -12,15 +12,24 @@
     {{#linkTo 'index'}}Index{{/linkTo}}
     {{#linkTo 'itinerary'}}Itinerary Items{{/linkTo}}
     {{outlet}}
+    {{log record}}
+
   </script>
 
   <script type="text/x-handlebars" id="itinerary">
   <h1>Itinerary</h1>
-  <div class="items">
-    <ul>
-    {{day9}}
-    </ul>
-  </div>
+  <ul>
+  {{#each item in items}}
+    {{log content}}
+    <li class="item">
+      {{item.id}}
+      {{item.place.name}}
+      {{item.place.description}}
+      <img src="http://{{item.place.img_url}}">
+    </li>
+  {{/each}}
+  {{outlet}}
+  </ul>
   </script>
 
   <script type="text/x-handlebars" id="index">

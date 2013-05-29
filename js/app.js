@@ -4,15 +4,19 @@ App = Ember.Application.create();
   //  TEST GENERIC MODELS
 
 App.ItineraryItem = Ember.Object.extend({
-  name: function () {
-    var name = this.place.get('name');
-    return (name);
-  }.property('name')
+  store: {},
+
+  find: function(id) {
+    return this.store[id];
+  }
 });
 
 App.ItineraryDay = Ember.Object.extend({
-  init: function () {
-    console.log("initializing an itinerary day");
+  loaded: false,
+
+  getData: function () {
+    if (this.get('loaded')) return;
+
     var url = "http://captain-planner-dev.herokuapp.com/mvp/itineraries/2/1";
     var itinerary = this;
 
@@ -21,38 +25,74 @@ App.ItineraryDay = Ember.Object.extend({
     dataType: 'json',
     crossDomain: true,
     }).then(function (response) {
-
-    console.log("received itinerary day data");
     var items = Em.A();
-    response.forEach(function (child) {
-      console.dir(child);
-      var item = App.ItineraryItem.create({
-        name: child.place.name
-      });
+    for (var i=0;i<response.length;i++) {
+      var item = App.ItineraryItem.create(response[i]).setProperties({id: i});
       items.push(item);
+    }
+    itinerary.setProperties({items: items, loaded: true});
     });
-    itinerary.setProperties({items: items});
-    });
+  }
+});
+
+App.ItineraryDay.reopenClass({
+  store: {},
+
+  find: function(id) {
+    if (!this.store[id]) {
+      this.store[id] = App.ItineraryDay.create({itinerary_id: id});
+    }
+    return this.store[id];
+  }
+});
+
+App.ItineraryItem.reopenClass({
+  store: {},
+
+  find: function(id) {
+    if (!this.store[id]) {
+      this.store[id] = App.ItineraryItem.create({item_id: id});
+    }
+    return this.store[id];
   }
 });
 
 //  ROUTER
 
-App.Router.map(function () {
-  this.resource('itinerary');
+App.Router.map(function() {
+  this.resource("itinerary");
+  this.resource("itinerary", { path: "itinerary/:itinerary_id" }, function() {
+    this.resource("item", { path: '/:item_id'} );
+  });
 });
-// App.Router.map(function() {
-//   this.resource("itinerary", { path: "/:itinerary_id" }, function() {
-//     this.resource('link', { path: '/:itinerary_id'} );
-//   });
-// });
 
 //  ROUTE HOOKS
 
 App.ItineraryRoute = Ember.Route.extend({
-  activate: function (controller, model) {
-    console.log("itinerary day setup active");
-    App.ItineraryDay.create({});
-  }
+    serialize: function(model) {
+      return {itinerary_id: model.get('itinerary_id')};
+    },
+
+    model: function(params) {
+      return App.ItineraryDay.find(params.itinerary_id);
+    },
+    
+    setupController: function(controller, model) {
+      model.getData();
+    }
+});
+
+App.ItemRoute = Ember.Route.extend({
+    serialize: function(model) {
+      return {item_id: model.get('item_id')};
+    },
+
+    model: function(params) {
+      return App.ItineraryItem.find(params.item_id);
+    },
+    
+    setupController: function(controller, model) {
+      return model;
+    }
 });
 
