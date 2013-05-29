@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Rubberduck</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script type="text/x-handlebars">
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="poll">
+    <section id="output">
+    </section>
+  </script>
+
+  <script type="text/x-handlebars" id="itinerary_items">
+  <div class="items">
+    <h1>Items</h1>
+    {{#each}}
+      <div class="place-data">
+        <h1>Place Name</h1>
+        <p>Place data</p>
+      </div>
+    {{/each}}
+  </div>
+  </script>
+
+  <script type="text/x-handlebars" id="index">
+    <h2>Home!</h2>
+    {{#linkTo 'poll'}}Poll{{/linkTo}}
+    {{#linkTo 'itinerary_items'}}Itinerary Items{{/linkTo}}
+  </script>
+
+  <script type="text/javascript" src="js/libs/jquery-1.9.1.js"></script>
+  <script type="text/javascript" src="js/libs/handlebars-1.0.0-rc.4.js"></script>
+  <script type="text/javascript" src="js/libs/ember.js"></script>
+  <script type="text/javascript" src="js/libs/ember-data.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+
+</body>
+</html>
