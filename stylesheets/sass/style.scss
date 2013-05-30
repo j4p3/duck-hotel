@@ -48,6 +48,12 @@ body {
 	background-image: url("../../images/light_wool.png");
 }
 
+div.hero-unit {
+	@include span-columns(8);
+	@include shift(2);
+	text-align:center;
+}
+
 //	inputs
 button.action-example {
 	@include important-button;
@@ -61,7 +67,7 @@ button.fancy-example {
 	@include fancy-button;
 	@include span-columns(4 of 6);
 }
-
+	
 input.email-example {
 	@include email-input;
 	@include span-columns(4 of 12);
@@ -72,6 +78,8 @@ input.email-example {
 div.place {
 	@include span-columns(12);
 	padding: 1em 2em;
+	margin-top: 1em;
+	:last-child { margin-bottom: 1em; }
 	img {
 		@include span-columns(2 of 12);
 		@extend .img-circle;
@@ -94,7 +102,7 @@ div.place {
 div.place-box {
 	margin-top:2em;
 	display:block;
-	background-image: url("../../images/hk-above.jpg");
+	background-image: url("https://dl.dropboxusercontent.com/u/27634/flower_market.jpg");
 	background-size: cover;
 	height: 600px;
 	padding: 1em 0;

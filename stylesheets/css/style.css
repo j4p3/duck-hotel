@@ -5092,15 +5092,15 @@ body {
   font: 14px/1.231 "Open Sans", sans-serif; }
 
 a {
-  color: #ff851c;
+  color: #152d2e;
   text-decoration: underline;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
+  -webkit-transition: 0.125s;
+  -moz-transition: 0.125s;
+  -o-transition: 0.125s;
+  transition: 0.125s;
   -webkit-backface-visibility: hidden; }
   a:hover {
-    color: #2ecc71;
+    color: #ff851c;
     text-decoration: none; }
 
 h1 {
@@ -7472,6 +7472,16 @@ body {
   body:after {
     clear: both; }
 
+div.hero-unit {
+  display: block;
+  float: left;
+  margin-right: 2.35765%;
+  width: 65.88078%;
+  margin-left: 17.05961%;
+  text-align: center; }
+  div.hero-unit:last-child {
+    margin-right: 0; }
+
 button.utility-example {
   display: block;
   float: left;
@@ -7509,6 +7519,7 @@ div.place {
   margin-right: 2.35765%;
   width: 100%;
   padding: 1em 2em;
+  margin-top: 1em;
   cursor: pointer;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -7520,6 +7531,8 @@ div.place {
   border: 2px solid #bdc1c5; }
   div.place:last-child {
     margin-right: 0; }
+  div.place :last-child {
+    margin-bottom: 1em; }
   div.place img {
     display: block;
     float: left;
@@ -7544,7 +7557,7 @@ div.place {
 div.place-box {
   margin-top: 2em;
   display: block;
-  background-image: url("../../images/hk-above.jpg");
+  background-image: url("https://dl.dropboxusercontent.com/u/27634/flower_market.jpg");
   background-size: cover;
   height: 600px;
   padding: 1em 0;

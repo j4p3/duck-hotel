@@ -180,15 +180,15 @@ body {
   font: 14px/1.231 "Open Sans", sans-serif; }
 
 a {
-  color: #ff851c;
+  color: #152d2e;
   text-decoration: underline;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
+  -webkit-transition: 0.125s;
+  -moz-transition: 0.125s;
+  -o-transition: 0.125s;
+  transition: 0.125s;
   -webkit-backface-visibility: hidden; }
   a:hover {
-    color: #2ecc71;
+    color: #ff851c;
     text-decoration: none; }
 
 h1 {
