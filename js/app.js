@@ -92,7 +92,7 @@ App.ItemRoute = Ember.Route.extend({
     },
     
     setupController: function(controller, model) {
-      return model;
+      model;
     }
 });
 

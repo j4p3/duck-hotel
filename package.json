@@ -1,0 +1,23 @@
+{
+  "name" : "duck-hotel",
+  "version" : "0.1.1",
+  "description" : "frontend layer for interacting w/ api",
+  "keywords" : ["api", "travel", "captain planner"],
+  "author" : "JP <bonnerjp@gmail.com>",
+  "dependencies": {
+	"bootstrap":"",
+	"sass":"",
+	"bourbon":"",
+	"neat":"",
+	"flat-ui":""
+  },
+  "devDependencies": {
+    "mocha" : "1.x.x",
+    "request" : "2.x.x"
+  },
+  "scripts": {
+    "test" : "make test",
+    "start" : "node index.js"
+  },
+  "engine" : { "node" : ">= 0.8" }
+}
