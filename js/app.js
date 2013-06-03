@@ -5,12 +5,12 @@ App = Ember.Application.create();
 
 App.ItineraryItem = Ember.Object.extend({
   store: {},
-
+  
   find: function(id) {
     return this.store[id];
   }
 });
-
+  
 App.ItineraryDay = Ember.Object.extend({
   loaded: false,
 
@@ -27,7 +27,8 @@ App.ItineraryDay = Ember.Object.extend({
     }).then(function (response) {
     var items = Em.A();
     for (var i=0;i<response.length;i++) {
-      var item = App.ItineraryItem.create(response[i]).setProperties({id: i});
+      console.dir(response[i]);
+      var item = App.ItineraryItem.create(response[i]);
       items.push(item);
     }
     itinerary.setProperties({items: items, loaded: true});
@@ -57,13 +58,17 @@ App.ItineraryItem.reopenClass({
   }
 });
 
+//  VIEWS
+
+// App.ItineraryItemView = Ember.View.extend({
+//   classNames: ['item-view'],
+// });
+
 //  ROUTER
 
 App.Router.map(function() {
   this.resource("itinerary");
-  this.resource("itinerary", { path: "itinerary/:itinerary_id" }, function() {
-    this.resource("item", { path: '/:item_id'} );
-  });
+  this.resource("item");
 });
 
 //  ROUTE HOOKS
@@ -82,17 +87,17 @@ App.ItineraryRoute = Ember.Route.extend({
     }
 });
 
-App.ItemRoute = Ember.Route.extend({
-    serialize: function(model) {
-      return {item_id: model.get('item_id')};
-    },
+// App.ItemRoute = Ember.Route.extend({
+//     serialize: function(model) {
+//       return {item_id: model.get('item_id')};
+//     },
 
-    model: function(params) {
-      return App.ItineraryItem.find(params.item_id);
-    },
+//     model: function(params) {
+//       return App.ItineraryItem.find(params.item_id);
+//     },
     
-    setupController: function(controller, model) {
-      return model;
-    }
-});
+//     setupController: function(controller, model) {
+//       model;
+//     }
+// });
 
